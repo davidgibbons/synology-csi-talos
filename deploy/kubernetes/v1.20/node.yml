@@ -87,11 +87,13 @@ spec:
           securityContext:
             privileged: true
           imagePullPolicy: IfNotPresent
-          image: ghcr.io/davidgibbons/synology-csi-talos:v1.2.0
+          image: ghcr.io/davidgibbons/synology-csi-talos:v1.2.1
           args:
             - --nodeid=$(KUBE_NODE_NAME)
             - --endpoint=$(CSI_ENDPOINT)
             - --client-info
+            - --chroot=/host
+            - '--iscsiadm-path=/usr/local/sbin/iscsiadm'
             - /etc/synology/client-info.yml
             - --log-level=info
           env:
